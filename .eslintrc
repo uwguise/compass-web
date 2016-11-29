@@ -1,0 +1,14 @@
+{
+  "extends": "rsnara",
+  "env": {
+    "jasmine": true
+  },
+  "rules": {
+    "immutable/no-mutation": 0,
+    "immutable/no-let": 0
+  },
+  "globals": {
+    "__TEST__": true,
+    "__DEV__": true
+  }
+}

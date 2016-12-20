@@ -31,11 +31,11 @@ module.exports = {
 
   devtool: !devmode ? 'source-map' : 'inline-source-map',
 
-  plugins: plugins,
+  plugins,
 
   devServer: {
     historyApiFallback: { index: '/' },
-    proxy: Object.assign({}, { '/api/*': 'http://localhost:3000' }),
+    proxy: Object.assign({}, { '/api/*': 'https://api.intrinio.com/' }),
     inline: true,
   },
 
@@ -52,7 +52,7 @@ module.exports = {
     ],
   },
 
-  postcss: postcss,
+  postcss,
 
   externals: {
     'react/lib/ReactContext': 'window',

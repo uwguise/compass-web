@@ -7,5 +7,5 @@
 export default function isPromise(value) {
   return !!value &&
     typeof value.promise === 'object' &&
-    typeof value.promise.then === 'function';
+    typeof value.promise.then === 'function'
 }

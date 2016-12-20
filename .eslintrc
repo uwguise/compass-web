@@ -6,8 +6,7 @@
   "rules": {
     "immutable/no-mutation": 0,
     "immutable/no-let": 0,
-    "semi": 0
-    # "semi": [2, "never"]
+    "semi": [2, "never"]
   },
   "globals": {
     "__TEST__": true,

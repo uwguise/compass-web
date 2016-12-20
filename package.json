@@ -106,5 +106,8 @@
   },
   "bugs": {
     "url": "https://github.com/uwguise/konstnar-web/issues"
+  },
+  "dependencies": {
+    "recharts": "^0.19.1"
   }
 }

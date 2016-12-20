@@ -105,5 +105,8 @@
   },
   "bugs": {
     "url": "https://github.com/uwguise/konstnar-web/issues"
+  },
+  "dependencies": {
+    "react-select": "^0.9.1"
   }
 }

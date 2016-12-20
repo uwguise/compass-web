@@ -1,12 +1,12 @@
-import React from 'react';
+import React from 'react'
+import EquityFinder from '../containers/equity-finder'
 
 function App() {
   return (
     <div>
-      Hello world!
+      <EquityFinder/>
     </div>
-  );
+  )
 }
 
-
-export default App;
+export default App

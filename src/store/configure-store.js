@@ -1,37 +1,38 @@
 import { createStore, applyMiddleware, compose } from 'redux';
-import thunk from 'redux-thunk';
 import { browserHistory } from 'react-router';
 import { routerMiddleware } from 'react-router-redux';
+import createSagaMiddleware from 'redux-saga';
+import logger from './logger';
 import rootReducer from '../reducers';
 
 function configureStore(initialState) {
+  const sagaMiddleware = createSagaMiddleware();
   const store = compose(
-    _getMiddleware(),
+    applyMiddleware(..._getMiddleware(), sagaMiddleware),
     ..._getEnhancers()
   )(createStore)(rootReducer, initialState);
 
   _enableHotLoader(store);
-  return store;
+  return { ...store, runSaga: sagaMiddleware.run };
 }
 
 function _getMiddleware() {
-  let middleware = [
+  const middleware = [
     routerMiddleware(browserHistory),
-    thunk,
   ];
 
   if (__DEV__) {
-    middleware = [...middleware];
+    return [...middleware, logger];
   }
 
-  return applyMiddleware(...middleware);
+  return middleware;
 }
 
 function _getEnhancers() {
-  let enhancers = [];
+  const enhancers = [];
 
   if (__DEV__ && window.devToolsExtension) {
-    enhancers = [...enhancers, window.devToolsExtension() ];
+    return [...enhancers, window.devToolsExtension() ];
   }
 
   return enhancers;

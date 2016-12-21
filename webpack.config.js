@@ -44,7 +44,7 @@ module.exports = {
       loaders.eslint,
     ],
     loaders: [
-      loaders.css,
+      loaders.scss,
       loaders.js,
       loaders.json,
       loaders.image,

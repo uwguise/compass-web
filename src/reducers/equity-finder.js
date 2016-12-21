@@ -14,4 +14,10 @@ export default ReduxActions.handleActions({
       .set('tickerSuggestions', I.fromJS(tickers))
       .set('fetchingTickerSuggestions', false)
   },
+
+  [C.EquityFinderActions.SELECT_COMPANY]: (state, action) => {
+    const { ticker } = action.payload
+    return state
+      .set('selectedCompany', ticker)
+  },
 }, I.Map())

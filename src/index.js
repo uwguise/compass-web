@@ -9,7 +9,7 @@ import { syncHistoryWithStore } from 'react-router-redux'
 
 import routes from './store/routes'
 import configureStore from './store/configure-store'
-import './styles/index.css'
+import './styles/index.scss'
 import rootSaga from './sagas'
 
 const store = configureStore({})

@@ -11,6 +11,11 @@ exports.css = {
   loader: 'style-loader!css?-minimize!postcss',
 };
 
+exports.scss = {
+  test: /\.scss$/,
+  loader: 'style-loader!css?-minimize!postcss!scss',
+};
+
 const jsloaders = [];
 if (testing) {
   jsloaders.push('babel?sourceMaps=both');

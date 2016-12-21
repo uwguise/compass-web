@@ -1,16 +1,16 @@
 import React, { PropTypes } from 'react'
+import * as I from 'immutable'
 
 const CompanyCard = ({
   company,
 }) => {
-  console.log(company)
   return (
-    <div>My Company</div>
+    <div>{company.get('name')}</div>
   )
 }
 
 CompanyCard.propTypes = {
-  company: PropTypes.object.isRequired,
+  company: PropTypes.instanceOf(I.Map).isRequired,
 }
 
 export default CompanyCard

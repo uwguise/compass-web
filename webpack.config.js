@@ -45,6 +45,7 @@ module.exports = {
     ],
     loaders: [
       loaders.css,
+      loaders.scss,
       loaders.js,
       loaders.json,
       loaders.image,

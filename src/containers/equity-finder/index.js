@@ -3,6 +3,7 @@ import * as I from 'immutable'
 import { connect } from 'react-redux'
 import * as ActionCreators from '../../action-creators'
 import { getSelectedCompany } from '../../selectors/equity-finder'
+// import Styles from './styles.scss'
 
 import Searchbar from '../../components/searchbar'
 import CompanyCard from '../../components/company-card'

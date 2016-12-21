@@ -14,6 +14,12 @@ const EquityFinder = ({
   tickerSuggestions,
   fetchingTickerSuggestions,
 }) => {
+  let $company
+  if (company.isEmpty()) {
+    $company = <h1 className="tc">Please select a company</h1>
+  } else {
+    $company = <CompanyCard company={company}/>
+  }
   return (
     <div className={Styles.equityFinder}>
       <Searchbar
@@ -25,8 +31,7 @@ const EquityFinder = ({
         }}
         onUpdate={(query) => dispatch(ActionCreators.fetchTickers(query))}/>
 
-      <CompanyCard
-        company={company}/>
+      {$company}
     </div>
 
   )

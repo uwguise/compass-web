@@ -1,0 +1,20 @@
+@import "../../styles/variables.scss";
+
+.companyCard {
+  background-color: $grey50;
+  padding: 10px;
+  margin-top: 20px;
+  border-radius: 2px;
+  transition: all 0.2s ease;
+
+  .name {
+    color: $grey700;
+    margin-bottom: 10px;
+  }
+
+  .logo {
+    background-size: cover;
+    width: 100px;
+    height: 100px;
+  }
+}

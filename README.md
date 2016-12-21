@@ -1,4 +1,4 @@
-# Konstnar Web
+# Compass Web
 
 This web front-end is built with React + Redux.
 

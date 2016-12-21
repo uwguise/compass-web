@@ -1,8 +1,8 @@
 import React, { PropTypes } from 'react'
-import * as I from 'immutable';
+import * as I from 'immutable'
 import Select from 'react-select'
 
-const noop = () => {};
+const noop = () => {}
 
 const Searchbar = ({
   suggestions,

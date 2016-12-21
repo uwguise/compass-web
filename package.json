@@ -1,5 +1,6 @@
 {
-  "name": "konstnar-web",
+  "name": "compass-web",
+  "name": "compass-web",
   "version": "0.1.0",
   "description": "A portfolio and workspace for artists!",
   "license": "MIT",
@@ -95,17 +96,17 @@
     "whatwg-fetch": "^2.0.1"
   },
   "keywords": [
-    "konstnar-web",
+    "compass-web",
     "portfolio",
     "workspace",
     "artists"
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/uwguise/konstnar-web.git"
+    "url": "git://github.com/uwguise/compass-web.git"
   },
   "bugs": {
-    "url": "https://github.com/uwguise/konstnar-web/issues"
+    "url": "https://github.com/uwguise/compass-web/issues"
   },
   "dependencies": {
     "react-select": "^1.0.0-rc.2"

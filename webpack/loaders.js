@@ -6,11 +6,6 @@ exports.eslint = {
   loader: 'eslint-loader',
 }
 
-exports.css = {
-  test: /\.css$/,
-  loader: 'style-loader!css?-minimize!postcss',
-}
-
 exports.scss = {
   test: /\.scss$/,
   loader: 'style-loader!css?-minimize!sass-loader?sourceMap!postcss',

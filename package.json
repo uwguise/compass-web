@@ -75,6 +75,7 @@
     "react-router-redux": "^4.0.0",
     "recharts": "^0.19.1",
     "redux": "^3.3.1",
+    "redux-actions": "^1.2.0",
     "redux-form": "^6.3.2",
     "redux-localstorage": "^0.4.0",
     "redux-logger": "^2.7.4",
@@ -105,5 +106,8 @@
   },
   "bugs": {
     "url": "https://github.com/uwguise/konstnar-web/issues"
+  },
+  "dependencies": {
+    "react-select": "^1.0.0-rc.2"
   }
 }

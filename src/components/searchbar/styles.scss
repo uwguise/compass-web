@@ -1,0 +1,11 @@
+@import "../../styles/variables.scss";
+
+.searchbar {
+  background-color: $grey50;
+  padding: 20px;
+
+  :global .Select-control {
+    border: none;
+    font-size: 20px;
+  }
+}

@@ -9,18 +9,9 @@ import Searchbar from '../../components/searchbar'
 import CompanyCard from '../../components/company-card'
 import PriceGraph from '../../components/price-graph'
 
-const priceData = [
-      { date: '2016-12-1', adj_close: 4000, adj_volume: 2400 },
-      { date: '2016-12-2', adj_close: 3000, adj_volume: 1398 },
-      { date: '2016-12-3', adj_close: 2000, adj_volume: 9800 },
-      { date: '2016-12-4', adj_close: 2780, adj_volume: 3908 },
-      { date: '2016-12-5', adj_close: 1890, adj_volume: 4800 },
-      { date: '2016-12-6', adj_close: 2390, adj_volume: 3800 },
-      { date: '2016-12-7', adj_close: 3490, adj_volume: 4300 },
-]
-
 const EquityFinder = ({
   dispatch,
+  priceData,
   company,
   tickerSuggestions,
   isFetchingTickerSuggestions,
@@ -50,6 +41,7 @@ const EquityFinder = ({
 
 EquityFinder.propTypes = {
   company: PropTypes.instanceOf(I.Map).isRequired,
+  priceData: PropTypes.arrayOf(PropTypes.object).isRequired,
   stockPrice: PropTypes.object,
   tickerSuggestions: PropTypes.instanceOf(I.List).isRequired,
   isFetchingTickerSuggestions: PropTypes.bool.isRequired,
@@ -58,10 +50,9 @@ EquityFinder.propTypes = {
 
 export default connect(
   (state) => {
-    console.log(EquityFinderSelectors.getSelectedCompanyPrices(state))
     return {
       company: EquityFinderSelectors.getSelectedCompany(state),
-      // priceData: getSelectedCompanyPrices(state),
+      priceData: EquityFinderSelectors.getSelectedCompanyPrices(state),
       tickerSuggestions: state.equityFinder.get('tickerSuggestions', I.List()),
       isFetchingTickerSuggestions: state.equityFinder.get('isFetchingTickerSuggestions', false),
     }

@@ -1,7 +1,7 @@
 import * as I from 'immutable'
 import * as Reselect from 'reselect'
 
-function getSelectedCompanyTicker(state) {
+export function getSelectedCompanyTicker(state) {
   return state.equityFinder.get('selectedCompany')
 }
 

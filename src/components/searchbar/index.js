@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react'
 import * as I from 'immutable'
 import Select from 'react-select'
+import Styles from './styles.scss'
 
 const noop = () => {}
 
@@ -11,11 +12,13 @@ const Searchbar = ({
   isSearching = false,
 }) => {
   return (
-    <Select
-      isLoading={isSearching}
-      onChange={({ value }) => onSearch(value)}
-      options={suggestions.map(createOption).toJS()}
-      onInputChange={onUpdate}/>
+    <div className={Styles.searchbar}>
+      <Select
+        isLoading={isSearching}
+        onChange={({ value }) => onSearch(value)}
+        options={suggestions.map(createOption).toJS()}
+        onInputChange={onUpdate}/>
+    </div>
   )
 }
 

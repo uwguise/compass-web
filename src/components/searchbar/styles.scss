@@ -1,11 +1,25 @@
 @import "../../styles/variables.scss";
 
-.searchbar {
-  background-color: $grey50;
-  padding: 20px;
+$barHeight: 75px;
 
+.searchbar {
   :global .Select-control {
     border: none;
+    border-radius: 0px;
     font-size: 20px;
+    height: $barHeight;
+    line-height: $barHeight;
+  }
+
+  :global .Select-input {
+    height: $barHeight;
+  }
+
+  :global .Select-placeholder {
+    line-height: $barHeight;
+  }
+
+  :global .Select--single > .Select-control .Select-value {
+    line-height: $barHeight;
   }
 }

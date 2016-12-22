@@ -1,21 +1,27 @@
 import React, { PropTypes } from 'react'
 // import * as I from 'immutable'
 import Styles from './styles.scss'
-import { ResponsiveContainer, LineChart, XAxis, Tooltip, Line } from 'recharts'
+import * as Re from 'recharts'
 
 const PriceGraph = ({
   priceData,
 }) => {
   return (
     <div className={Styles.priceGraph}>
-      <ResponsiveContainer>
-        <LineChart width={600} height={300} data={priceData}
+      <Re.ResponsiveContainer>
+        <Re.AreaChart width={600} height={300} data={priceData}
           margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
-          <XAxis dataKey="date"/>
-          <Tooltip/>
-          <Line type="monotone" dataKey="adj_close" stroke="#8884d8" activeDot={{ r: 8 }}/>
-        </LineChart>
-      </ResponsiveContainer>
+          <Re.XAxis dataKey="date" padding={{ left: 0, right: 0 }} minTickGap={100}/>
+          <Re.YAxis/>
+          <Re.Tooltip/>
+          <Re.Area
+            type="monotone"
+            dataKey="adj_close"
+            stroke="#82ca9d"
+            fillOpacity={0.2}
+            fill="#82ca9d"/>
+        </Re.AreaChart>
+      </Re.ResponsiveContainer>
     </div>
   )
 }

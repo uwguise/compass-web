@@ -11,6 +11,7 @@ import PriceGraph from '../../components/price-graph'
 
 const EquityFinder = ({
   dispatch,
+  selectedCompanyTicker,
   priceData,
   company,
   tickerSuggestions,
@@ -27,12 +28,20 @@ const EquityFinder = ({
       <Searchbar
         isSearching={isFetchingTickerSuggestions}
         suggestions={tickerSuggestions}
+        query={selectedCompanyTicker}
         onSearch={(ticker) => {
-          dispatch(ActionCreators.fetchCompany(ticker))
-          dispatch(ActionCreators.selectCompany(ticker))
-          dispatch(ActionCreators.fetchPricesForCompany(ticker))
+          if (ticker) {
+            dispatch(ActionCreators.fetchCompany(ticker))
+            dispatch(ActionCreators.selectCompany(ticker))
+            dispatch(ActionCreators.fetchPricesForCompany(ticker))
+          }
         }}
-        onUpdate={(query) => dispatch(ActionCreators.fetchTickers(query))}/>
+        onUpdate={(query) => {
+          if (query) {
+            console.log(query)
+            dispatch(ActionCreators.fetchTickers(query))
+          }
+        }}/>
       <PriceGraph priceData={priceData}/>
       {$company}
     </div>
@@ -45,6 +54,7 @@ EquityFinder.propTypes = {
   stockPrice: PropTypes.object,
   tickerSuggestions: PropTypes.instanceOf(I.List).isRequired,
   isFetchingTickerSuggestions: PropTypes.bool.isRequired,
+  selectedCompanyTicker: PropTypes.string.isRequired,
   dispatch: PropTypes.func.isRequired,
 }
 
@@ -53,6 +63,7 @@ export default connect(
     return {
       company: EquityFinderSelectors.getSelectedCompany(state),
       priceData: EquityFinderSelectors.getSelectedCompanyPrices(state),
+      selectedCompanyTicker: EquityFinderSelectors.getSelectedCompanyTicker(state),
       tickerSuggestions: state.equityFinder.get('tickerSuggestions', I.List()),
       isFetchingTickerSuggestions: state.equityFinder.get('isFetchingTickerSuggestions', false),
     }

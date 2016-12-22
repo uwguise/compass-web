@@ -10,10 +10,12 @@ const Searchbar = ({
   onUpdate = noop,
   onSearch = noop,
   isSearching = false,
+  query,
 }) => {
   return (
     <div className={Styles.searchbar}>
       <Select
+        value={query}
         isLoading={isSearching}
         onChange={({ value }) => onSearch(value)}
         options={suggestions.map(createOption).toJS()}
@@ -34,6 +36,7 @@ Searchbar.propTypes = {
   onUpdate: PropTypes.func,
   onSearch: PropTypes.func,
   isSearching: PropTypes.bool,
+  query: PropTypes.string.isRequired,
 }
 
 export default Searchbar

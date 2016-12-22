@@ -36,7 +36,7 @@ function* fetchPricesForCompany(action) {
   const { ticker } = action.payload
   yield put(ActionCreators.toggleIsFetchingPrices())
   try {
-    const startDate = moment().subtract(30, 'days').format('YYYY-MM-DD')
+    const startDate = moment().subtract(1, 'years').format('YYYY-MM-DD')
     const URL = `prices?identifier=${ticker}&frequency=daily&start_date=${startDate}`
     const response = yield call(API.get, URL)
     const { data: prices } = yield response.json()

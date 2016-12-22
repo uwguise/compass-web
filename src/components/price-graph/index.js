@@ -11,7 +11,7 @@ const PriceGraph = ({
       <ResponsiveContainer>
         <AreaChart width={600} height={300} data={priceData}
           margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
-          <XAxis dataKey="date"/>
+          <XAxis dataKey="date" padding={{ left: 0, right: 0 }} minTickGap={100}/>
           <YAxis/>
           <Tooltip/>
           <Area type="monotone" dataKey="adj_close" stroke="#8884d8" activeDot={{ r: 8 }}/>

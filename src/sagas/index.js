@@ -3,6 +3,7 @@ import { takeEvery } from 'redux-saga'
 import { call, put } from 'redux-saga/effects'
 import * as API from '../utils/api'
 import * as ActionCreators from '../action-creators'
+import moment from 'moment'
 
 export default function* root() {
   yield [
@@ -35,8 +36,9 @@ function* fetchPricesForCompany(action) {
   const { ticker } = action.payload
   yield put(ActionCreators.toggleIsFetchingPrices())
   try {
-    const response = yield call(API.get,
-      `prices?identifier=${ticker}&frequency=daily&start_date=2016-11-21`)
+    const startDate = moment().subtract(30, 'days').format('YYYY-MM-DD')
+    const URL = `prices?identifier=${ticker}&frequency=daily&start_date=${startDate}`
+    const response = yield call(API.get, URL)
     const { data: prices } = yield response.json()
     yield put(ActionCreators.savePricesForCompany(ticker, prices))
   } finally {

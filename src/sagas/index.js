@@ -8,14 +8,20 @@ export default function* root() {
   yield [
     takeEvery(C.TickerActions.FETCH, fetchTickers),
     takeEvery(C.CompanyActions.FETCH, fetchCompany),
+    takeEvery(C.CompanyActions.FETCH_PRICES, fetchPricesForCompany),
   ]
 }
 
 function* fetchTickers(action) {
   const { query } = action.payload
-  const response = yield call(API.get, `companies?query=${query}&page_size=20`)
-  const { data } = yield response.json()
-  yield put(ActionCreators.saveTickers(data.map(ticker => ticker.ticker)))
+  yield put(ActionCreators.toggleIsFetchingTickerSuggestions())
+  try {
+    const response = yield call(API.get, `companies?query=${query}&page_size=20`)
+    const { data } = yield response.json()
+    yield put(ActionCreators.saveTickers(data.map(ticker => ticker.ticker)))
+  } finally {
+    yield put(ActionCreators.toggleIsFetchingTickerSuggestions())
+  }
 }
 
 function* fetchCompany(action) {
@@ -23,4 +29,16 @@ function* fetchCompany(action) {
   const response = yield call(API.get, `companies?identifier=${ticker}`)
   const data = yield response.json()
   yield put(ActionCreators.saveCompany(data))
+}
+
+function* fetchPricesForCompany(action) {
+  const { ticker } = action.payload
+  yield put(ActionCreators.toggleIsFetchingPrices())
+  try {
+    const response = yield call(API.get, `prices?identifier=${ticker}&frequency=weekly`)
+    const { data: prices } = yield response.json()
+    yield put(ActionCreators.savePricesForCompany(ticker, prices))
+  } finally {
+    yield put(ActionCreators.toggleIsFetchingPrices())
+  }
 }

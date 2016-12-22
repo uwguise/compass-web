@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react'
 import * as I from 'immutable'
 import { connect } from 'react-redux'
 import * as ActionCreators from '../../action-creators'
-import { getSelectedCompany } from '../../selectors/equity-finder'
+import * as EquityFinderSelectors from '../../selectors/equity-finder'
 import Styles from './styles.scss'
 
 import Searchbar from '../../components/searchbar'
@@ -23,7 +23,7 @@ const EquityFinder = ({
   dispatch,
   company,
   tickerSuggestions,
-  fetchingTickerSuggestions,
+  isFetchingTickerSuggestions,
 }) => {
   let $company
   if (company.isEmpty()) {
@@ -34,11 +34,12 @@ const EquityFinder = ({
   return (
     <div className={Styles.equityFinder}>
       <Searchbar
-        isSearching={fetchingTickerSuggestions}
+        isSearching={isFetchingTickerSuggestions}
         suggestions={tickerSuggestions}
         onSearch={(ticker) => {
           dispatch(ActionCreators.fetchCompany(ticker))
           dispatch(ActionCreators.selectCompany(ticker))
+          dispatch(ActionCreators.fetchPricesForCompany(ticker))
         }}
         onUpdate={(query) => dispatch(ActionCreators.fetchTickers(query))}/>
       <PriceGraph priceData={priceData}/>
@@ -51,17 +52,18 @@ EquityFinder.propTypes = {
   company: PropTypes.instanceOf(I.Map).isRequired,
   stockPrice: PropTypes.object,
   tickerSuggestions: PropTypes.instanceOf(I.List).isRequired,
-  fetchingTickerSuggestions: PropTypes.bool.isRequired,
+  isFetchingTickerSuggestions: PropTypes.bool.isRequired,
   dispatch: PropTypes.func.isRequired,
 }
 
 export default connect(
   (state) => {
+    console.log(EquityFinderSelectors.getSelectedCompanyPrices(state))
     return {
-      company: getSelectedCompany(state),
+      company: EquityFinderSelectors.getSelectedCompany(state),
       // priceData: getSelectedCompanyPrices(state),
       tickerSuggestions: state.equityFinder.get('tickerSuggestions', I.List()),
-      fetchingTickerSuggestions: state.equityFinder.get('fetchingTickerSuggestions', false),
+      isFetchingTickerSuggestions: state.equityFinder.get('isFetchingTickerSuggestions', false),
     }
   },
 )(EquityFinder)

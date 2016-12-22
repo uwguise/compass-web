@@ -35,7 +35,8 @@ function* fetchPricesForCompany(action) {
   const { ticker } = action.payload
   yield put(ActionCreators.toggleIsFetchingPrices())
   try {
-    const response = yield call(API.get, `prices?identifier=${ticker}&frequency=weekly`)
+    const response = yield call(API.get,
+      `prices?identifier=${ticker}&frequency=daily&start_date=2016-11-21`)
     const { data: prices } = yield response.json()
     yield put(ActionCreators.savePricesForCompany(ticker, prices))
   } finally {

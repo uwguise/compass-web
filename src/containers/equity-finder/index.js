@@ -30,11 +30,18 @@ const EquityFinder = ({
         suggestions={tickerSuggestions}
         query={selectedCompanyTicker}
         onSearch={(ticker) => {
-          dispatch(ActionCreators.fetchCompany(ticker))
-          dispatch(ActionCreators.selectCompany(ticker))
-          dispatch(ActionCreators.fetchPricesForCompany(ticker))
+          if (ticker) {
+            dispatch(ActionCreators.fetchCompany(ticker))
+            dispatch(ActionCreators.selectCompany(ticker))
+            dispatch(ActionCreators.fetchPricesForCompany(ticker))
+          }
         }}
-        onUpdate={(query) => dispatch(ActionCreators.fetchTickers(query))}/>
+        onUpdate={(query) => {
+          if (query) {
+            console.log(query)
+            dispatch(ActionCreators.fetchTickers(query))
+          }
+        }}/>
       <PriceGraph priceData={priceData}/>
       {$company}
     </div>

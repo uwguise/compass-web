@@ -7,19 +7,19 @@ $barHeight: 75px;
     border: none;
     border-radius: 0px;
     font-size: 20px;
-    height: @barHeight;
-    line-height: @barHeight;
+    height: $barHeight;
+    line-height: $barHeight;
   }
 
   :global .Select-input {
-    height: @barHeight;
+    height: $barHeight;
   }
 
   :global .Select-placeholder {
-    line-height: @barHeight;
+    line-height: $barHeight;
   }
 
   :global .Select--single > .Select-control .Select-value {
-    line-height: @barHeight;
+    line-height: $barHeight;
   }
 }
